@@ -73,22 +73,17 @@ class PriorityQueue_LinkedList(PriorityQueue):
         if self.head == None:
             self.head = obj
         else:
-            current = self.head
-            if current.priority < obj.priority:
-                obj.nextNode = current
-                self.head = obj
-            else:
-                previous = self.head
-                current = current.nextNode
-                while current != None:
-                    if current.priority < obj.priority:
-                        previous.nextNode = obj
-                        obj.nextNode = current
-                        return
-                    else:
-                        previous = current
-                        current = current.nextNode
-                previous.nextNode = obj
+            previous = self.head
+            current = self.head.nextNode
+            while current != None:
+                if current.priority < obj.priority:
+                    previous.nextNode = obj
+                    obj.nextNode = current
+                    return
+                else:
+                    previous = current
+                    current = current.nextNode
+            previous.nextNode = obj
 
     def remove(self):
         returnNode = self.head
@@ -115,7 +110,10 @@ class PriorityQueue_BST(object):
         self.numberOfItems = 0
 
     def insert(self, obj):
-        pass
+        if self.root == None:
+            self.root = obj
+        else:
+            pass
 
     def remove(self):
         pass
@@ -126,8 +124,28 @@ class PriorityQueue_BST(object):
     def __str__(self):
         pass
 
+# To improve performance, priority queues typically use a heap as their backbone, 
+# giving O(log n) performance for inserts and removals, and O(n log n) to build initially
+# Using built in heapq.py, for implementation of Binary Heap, refer to TreesAndGraphs/BinaryHeap
 class PriorityQueue_Heap(object):
-    pass
+    def __init__(self):
+        self.heapList = []
+        self.currentSize = 0
+
+    def insert(self, obj):
+        pass
+
+    def remove(self):
+        pass
+
+    def size(self):
+        return len(self.arrayList)
+
+    def heapify(self):
+        pass
+
+    def __str__(self):
+        pass
 
 if __name__ == '__main__':
     A = PriorityQueue_Array()
