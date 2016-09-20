@@ -21,6 +21,8 @@ class PriorityObject(object):
         self.priority = priority
         self.value = value
         self.nextNode = None
+        self.leftChild = None
+        self.rightChild = None
 
 # Either sorted or unsorted
 # Sorted: Insert - O(N), RemoveMax - O(1)
@@ -107,7 +109,22 @@ class PriorityQueue_LinkedList(PriorityQueue):
         return returnString
 
 class PriorityQueue_BST(object):
-    pass
+
+    def __init__(self):
+        self.root = None
+        self.numberOfItems = 0
+
+    def insert(self, obj):
+        pass
+
+    def remove(self):
+        pass
+
+    def size(self):
+        return self.numberOfItems
+
+    def __str__(self):
+        pass
 
 class PriorityQueue_Heap(object):
     pass
