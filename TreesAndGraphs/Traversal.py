@@ -4,7 +4,6 @@ Implement BFS and DFS traversal of trees
 DFS uses a stack
 BFS uses a queue
 """
-
 class Queue(object):
     def __init__(self):
         self.list = []
@@ -89,7 +88,6 @@ def inOrder(root):
             s.append(current)
          
             current = current.left 
- 
          
         # BackTrack from the empty subtree and visit the Node
         # at the top of the stack; however, if the stack is 
@@ -140,7 +138,6 @@ def iterativePreorder(root):
 # An iterative function to do postorder traversal of a
 # given binary tree using 2 stacks
 def postOrderIterative2(root): 
- 
     if root is None:
         return         
      
@@ -231,6 +228,7 @@ def DepthFirstSearch(root):
             tracker.push(node.left)
     return visited
 
+#http://www.geeksforgeeks.org/iterative-preorder-traversal/
 if __name__ == "__main__":
     print "\n\
            1        \n\

@@ -6,39 +6,12 @@ Since we want all nodes at each depth, want to use BFS method.
 BFS uses a queue to track nodes.
 
 """
-
-class TreeNode(object):
-    def __init__(self, value):
-        self.value = value
-        self.left = None
-        self.right = None
-
-def createLinkedList(root):
-    level = 0
-    result = []
-    newList = UnorderedList()
-    newList.add(root)
-    result.insert(level, newList)
-    while True:
-        newSubList = UnorderedList()
-        for i in range(result[level].size()):
-            node = result[level][i]
-            if node != None:
-                if node.left != None:
-                    newSubList.add(node.left)
-                if node.right != None:
-                    newSubList.add(node.right)
-        if newSubList.size() > 0:
-            result.insert(level + 1, newSubList)
-        else:
-            break
-        level += 1
-    return result
-
 class Node:
     def __init__(self,initdata):
         self.data = initdata
         self.next = None
+        self.left = None
+        self.right = None
 
     def getData(self):
         return self.data
@@ -100,8 +73,59 @@ class UnorderedList:
         else:
             previous.setNext(current.getNext())
 
-if __name__ == '__main__':
-    t1 = TreeNode(1)
-    t1.right = TreeNode(2)
 
-    testList = createLinkedList(t1)
+class TreeNode(object):
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+def createLinkedList(root):
+    if root is None:
+        return []
+
+    result = []
+    queue = [root]
+    temp = UnorderedList()
+    num_of_nodes_in_current_depth = 1
+
+    while True:
+        if num_of_nodes_in_current_depth == 0:
+            num_of_nodes_in_current_depth = len(queue)
+            result.append(temp)
+            temp = UnorderedList()
+
+        if len(queue) == 0:
+            break
+
+        current = queue.pop()
+        temp.add(current.value)
+
+        if current.left != None:
+            queue.insert(0,current.left)
+        if current.right != None:
+            queue.insert(0,current.right)
+        num_of_nodes_in_current_depth -= 1
+    return result
+
+if __name__ == '__main__':
+    print "\n\
+           1        \n\
+          / \\      \n\
+         2   3      \n\
+        / \\        \n\
+       4   5"
+    root = TreeNode(1)
+    root.left = TreeNode(2)
+    root.right = TreeNode(3)
+
+    root.left.left = TreeNode(4)
+    root.left.right = TreeNode(5)
+
+    testList = createLinkedList(root)
+    for i,linkedList in enumerate(testList):
+        print 'depth',i,':'
+        current = linkedList.head
+        while current != None:
+            print current.getData()
+            current = current.getNext()
