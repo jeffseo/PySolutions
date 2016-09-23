@@ -49,29 +49,22 @@ If no adjacent vertex is found, remove first vertex from queue (basically dequeu
 Repeat rule 1 and rule 2 until queue is empty
 
 """
-def BreadthFirstSearch(root):
+def BreadthFirstSearch(root, searchValue):
     print 'BFS:'
     tracker = Queue()
     tracker.enqueue(root)
-    """
-        if (tmp->mData == searchKey)
-            return true;
-        else
-        {
-            if(tmp->mLeft != NULL)
-                q.push(tmp->mLeft);
-            if(tmp->mRight != NULL)
-                q.push(tmp->mRight);
-        }
-    }
-    """
+
     while tracker.size() != 0:
         node = tracker.dequeue()
-        if node.left != None:
-            tracker.enqueue(node.left)
-        if node.right != None:
-            tracker.enqueue(node.right)
-        print node.data
+        if node.data == searchValue:
+            return True
+        else:
+            if node.left != None:
+                tracker.enqueue(node.left)
+            if node.right != None:
+                tracker.enqueue(node.right)
+            print node.data
+    return False
 
 def PostOrderTraversal(root):
     if root == None:
@@ -79,7 +72,7 @@ def PostOrderTraversal(root):
     PostOrderTraversal(root.left)
     PostOrderTraversal(root.right)
     print root.data
-    
+
 # NOTE: DFS on a tree is equivalent to post-order traversal
 def DepthFirstSearch(root):
     print 'DFS:'
@@ -112,7 +105,7 @@ if __name__ == "__main__":
     root.left.left = TreeNode(4)
     root.left.right = TreeNode(5)
 
-    BreadthFirstSearch(root)
+    BreadthFirstSearch(root, 6)
     DepthFirstSearch(root)
 
 
