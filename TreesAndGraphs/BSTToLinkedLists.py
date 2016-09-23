@@ -1,8 +1,7 @@
 """
 4.4
 Given a binary search tree, design an algorithm which creates a linked list of all the
-nodes at each depth (eg, if you have a tree with depth D, you’ll have D linked lists).
-
+nodes at each depth (eg, if you have a tree with depth D, you'll have D linked lists).
 Since we want all nodes at each depth, want to use BFS method.
 BFS uses a queue to track nodes.
 
@@ -19,11 +18,22 @@ def createLinkedList(root):
     result = []
     newList = UnorderedList()
     newList.add(root)
-    result.add(level, newList)
+    result.insert(level, newList)
     while True:
         newSubList = UnorderedList()
-        for i in result[level].size():
-            
+        for i in range(result[level].size()):
+            node = result[level][i]
+            if node != None:
+                if node.left != None:
+                    newSubList.add(node.left)
+                if node.right != None:
+                    newSubList.add(node.right)
+        if newSubList.size() > 0:
+            result.insert(level + 1, newSubList)
+        else:
+            break
+        level += 1
+    return result
 
 class Node:
     def __init__(self,initdata):
@@ -91,4 +101,7 @@ class UnorderedList:
             previous.setNext(current.getNext())
 
 if __name__ == '__main__':
-    pass
+    t1 = TreeNode(1)
+    t1.right = TreeNode(2)
+
+    testList = createLinkedList(t1)
