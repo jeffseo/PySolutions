@@ -93,7 +93,7 @@ def inOrder(root):
         # at the top of the stack; however, if the stack is 
         # empty you are done
         else:
-            if(len(s) >0 ):
+            if(len(s) > 0):
                 current = s.pop()
                 print current.data,
          
