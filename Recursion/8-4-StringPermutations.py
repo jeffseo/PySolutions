@@ -1,0 +1,29 @@
+"""
+8.4
+Write a method to compute all permutations of a string
+"""
+from itertools import permutations
+
+def getAllPermutations_libary(string):
+    perms = [''.join(p) for p in permutations(string)]
+    return list(set(perms)) #removes duplicates
+
+def permutation(string, step = 0):
+    # if we've gotten to the end, print the permutation
+    if step == len(string):
+        print "".join(string)
+
+    # everything to the right of step has not been swapped yet
+    for i in range(step, len(string)):
+
+        # copy the string (store as array)
+        string_copy = list(string)
+
+        # swap the current index with the step
+        string_copy[step], string_copy[i] = string_copy[i], string_copy[step]
+
+        # recurse on the portion of the string that has not been swapped yet (now it's index will begin with step + 1)
+        permutation(string_copy, step + 1)
+
+#print getAllPermutations_libary('test')
+permutation('test')

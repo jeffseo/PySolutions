@@ -39,5 +39,5 @@ def move_robot(n):
     matrix = [[0]*n for x in xrange(n)]
     return calc(0, 0, matrix)
 
-print move_robot(4)
+print move_robot(3)
 
