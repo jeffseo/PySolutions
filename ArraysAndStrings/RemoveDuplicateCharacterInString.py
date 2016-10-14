@@ -37,4 +37,5 @@ def remove_duplicates(string_to_remove):
             return string_to_remove
 
 if __name__ == '__main__':
-    print remove_duplicates('my name is jeff')
+    #print remove_duplicates('my name is jeff')
+    print remove_duplicates('aaabb')
